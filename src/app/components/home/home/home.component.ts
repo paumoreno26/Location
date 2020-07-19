@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationService } from 'src/app/core/services/location.service';
 import { Generic } from 'src/app/core/models/genericResponse';
 import { Children } from 'src/app/core/models/children';
+import { Parent } from 'src/app/core/models/parent';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   public formGroup: FormGroup;
   public formGroupChildren:FormGroup;
-  public locationParent: Generic;
+  public locationParent: Generic<Parent[]>;
   public data: Children;
   public children = false;
   public idChildren : number;

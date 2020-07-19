@@ -1,6 +1,6 @@
 import { Parent } from './parent';
 
-export class Generic{
-    locacion: Parent[];
+export class Generic <T>{
+    locacion: T;
     mensaje: string;
 }

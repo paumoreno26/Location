@@ -13,15 +13,15 @@ export class LocationService {
   constructor(private http: HttpClient) { }
 
 
-  loadParent(): Observable<Generic>{
+  loadParent(): Observable<Generic<Parent[]>>{
     const url =  `http://localhost:8080/location/parent`
 
-    return this.http.get<Generic>(url);
+    return this.http.get<Generic<Parent[]>>(url);
   }
 
-  addCHildren(data: Children):Observable<any>{
+  addCHildren(data: Children):Observable<Generic<any>>{
     debugger
     const url =  `http://localhost:8080/location/child`;
-    return this.http.post<any>(url, data)
+    return this.http.post<Generic<any>>(url, data)
   }
 }
