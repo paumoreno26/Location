@@ -1,0 +1,95 @@
+<form #formLocation="ngForm" (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <!-- name  -->
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label class="label">Name</mat-label>
+        <input matInput type="text" maxlength="10" minlength="3" formControlName="name" id="name">
+        <!-- requerido -->
+        <mat-error *ngIf="formGroup.get('name').touched && formGroup.get('name').hasError('required')">
+            <span class="o-errors__text">
+                Este campo es obligatorio
+            </span>
+        </mat-error>
+        <!-- requerido -->
+    </mat-form-field>
+    <br>
+    <!-- name  -->
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label class="label">Area</mat-label>
+        <input matInput type="tel" inputmode="numeric" maxlength="10" minlength="" formControlName="area" id="area">
+        <!-- requerido -->
+        <mat-error *ngIf="formGroup.get('area').touched && formGroup.get('area').hasError('required')">
+            <span class="o-errors__text">
+                Este campo es obligatorio
+            </span>
+        </mat-error>
+        <!-- requerido -->
+    </mat-form-field>
+    <br>
+    <button class="button" type="submit" [disabled]="!formLocation.form.valid">
+        <span class="c-landing__button-text">
+            Add Location
+        </span>
+    </button>
+</form>
+
+
+<!--Tablas-->
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Area</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of locationParent.locacion">
+            <td>{{data.name}}</td>
+            <td>{{data.area}}</td>
+            <td (click)="addChildren(data.id)">Add Children</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="children">
+    <br>
+    <form #formLocationChildren="ngForm" (ngSubmit)="sendChildren()" [formGroup]="formGroupChildren">
+        <!-- name Children -->
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label class="label">Name</mat-label>
+            <input matInput type="text" maxlength="10" minlength="3" formControlName="name" id="name">
+            <!-- requerido -->
+            <mat-error
+                *ngIf="formGroupChildren.get('name').touched && formGroupChildren.get('name').hasError('required')">
+                <span class="o-errors__text">
+                    Este campo es obligatorio
+                </span>
+            </mat-error>
+            <!-- requerido -->
+        </mat-form-field>
+        <br>
+        <!-- Area Children -->
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label class="label">Area</mat-label>
+            <input matInput type="tel" inputmode="numeric" maxlength="10" formControlName="area" id="area">
+            <!-- requerido -->
+            <mat-error
+                *ngIf="formGroupChildren.get('area').touched && formGroupChildren.get('area').hasError('required')">
+                <span class="o-errors__text">
+                    Este campo es obligatorio
+                </span>
+            </mat-error>
+            <!-- requerido -->
+        </mat-form-field>
+        <br>
+
+        <br>
+        <button class="button" type="submit" [disabled]="!formLocationChildren.form.valid">
+            <span class="c-landing__button-text">
+                Add Children
+            </span>
+        </button>
+    </form>
+
+</div>
