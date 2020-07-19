@@ -8,7 +8,7 @@ Abrir Visual Studio Code e importar el proyecto angular.
 
 # Build
 Click dercho en el poryecto principal en spring boot, click en Run as y click en spring boot app.
-En Visual Studio Code abrir una terminal y escribir ng serve -o.
+En Visual Studio Code abrir una terminal y escribir npm install y luego ng serve -o.
 Tener una base de datos MySQL local y agregar un esquema que se llame db_prueba_bdb.
 Cuando el back suba este creara las tablas e insertara automaticamente un script.
 
