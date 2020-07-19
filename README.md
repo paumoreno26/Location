@@ -1,27 +1,21 @@
 # Location
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+# Instalation
+Clonar las ramas de back y front.
+Abrir Spring Boot e importar el proyecto maven.
+Abrir Visual Studio Code e importar el proyecto angular.
 
-## Development server
+# Build
+Click dercho en el poryecto principal en spring boot, click en Run as y click en spring boot app.
+En Visual Studio Code abrir una terminal y escribir npm install y luego ng serve -o.
+Tener una base de datos MySQL local y agregar un esquema que se llame db_prueba_bdb.
+Cuando el back suba este creara las tablas e insertara automaticamente un script.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Proyecto
+http://localhost:4200/
+En la anterior url se puede observar el proyecto front, apuntando a los servicios back localmente.
+Se puede agregar locaciones principales y listarlas.
+Se puede agregar locaciones internas a las principales.
+se puede listar las locaciones internas de alguna locacion principal
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
