@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
   public formGroup: FormGroup;
   public formGroupChildren:FormGroup;
   public locationParent: Generic<Parent[]>;
+  public locationChild: Generic<Children[]>;
   public data: Children;
+  public parent: Parent;
   public children = false;
   public idChildren : number;
   constructor(
@@ -28,9 +30,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.data = new Children();
     this.loadValidations();
-
+    this.parent = new Parent();
     this.loadParent();
-    this.loadChildren();
   }
 
   loadValidations(){
@@ -44,20 +45,19 @@ export class HomeComponent implements OnInit {
 
   }
 
-  loadChildren(){
 
-    this.formGroupChildren = this.FormBuilderChildren.group(
-      {
-        name:["",Validators.required],
-        area: ["", Validators.required]
-      }
-    )
-
-  }
 
   loadParent(){
     this.locationService.loadParent().subscribe(res => {
       this.locationParent = res;
+      console.log("resultado", this.locationParent);
+    })
+  }
+
+  loadChildren(id:number){
+    debugger
+    this.locationService.loadChildren(id).subscribe(res => {
+      this.locationChild = res;
       console.log("resultado", this.locationParent);
     })
   }
@@ -83,6 +83,20 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(){
+    debugger
+    this.parent.name = this.formGroup.value.name;
+    this.parent.area = this.formGroup.value.area;
+    this.locationService.addParent(this.parent).subscribe(res =>{
+      console.log("datos enviados", res)
+      this.loadParent();
 
+    })
+  }
+
+  delete(id:number){
+    this.locationService.deleteParent(id).subscribe(res =>{
+      console.log("Eliminado", res)
+      this.loadParent();
+    })
   }
 }

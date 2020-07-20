@@ -2,7 +2,7 @@
     <!-- name  -->
     <mat-form-field appearance="fill" class="w-100">
         <mat-label class="label">Name</mat-label>
-        <input matInput type="text" maxlength="10" minlength="3" formControlName="name" id="name">
+        <input matInput type="text" maxlength="30" minlength="3" formControlName="name" id="name">
         <!-- requerido -->
         <mat-error *ngIf="formGroup.get('name').touched && formGroup.get('name').hasError('required')">
             <span class="o-errors__text">
@@ -15,7 +15,7 @@
     <!-- name  -->
     <mat-form-field appearance="fill" class="w-100">
         <mat-label class="label">Area</mat-label>
-        <input matInput type="tel" inputmode="numeric" maxlength="10" minlength="" formControlName="area" id="area">
+        <input matInput type="tel" inputmode="numeric" maxlength="30" minlength="" formControlName="area" id="area">
         <!-- requerido -->
         <mat-error *ngIf="formGroup.get('area').touched && formGroup.get('area').hasError('required')">
             <span class="o-errors__text">
@@ -40,14 +40,16 @@
         <tr>
             <th>Name</th>
             <th>Area</th>
-            <th>Actions</th>
+            <th>Add</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of locationParent.locacion">
             <td>{{data.name}}</td>
             <td>{{data.area}}</td>
-            <td (click)="addChildren(data.id)">Add Children</td>
+            <td class="actions" (click)="addChildren(data.id)">Add Children</td>
+            <td class="actions" (click)="delete(data.id)">Delete</td>
         </tr>
     </tbody>
 </table>
@@ -58,7 +60,7 @@
         <!-- name Children -->
         <mat-form-field appearance="fill" class="w-100">
             <mat-label class="label">Name</mat-label>
-            <input matInput type="text" maxlength="10" minlength="3" formControlName="name" id="name">
+            <input matInput type="text" maxlength="30" minlength="3" formControlName="name" id="name">
             <!-- requerido -->
             <mat-error
                 *ngIf="formGroupChildren.get('name').touched && formGroupChildren.get('name').hasError('required')">
@@ -72,7 +74,7 @@
         <!-- Area Children -->
         <mat-form-field appearance="fill" class="w-100">
             <mat-label class="label">Area</mat-label>
-            <input matInput type="tel" inputmode="numeric" maxlength="10" formControlName="area" id="area">
+            <input matInput type="tel" inputmode="numeric" maxlength="30" formControlName="area" id="area">
             <!-- requerido -->
             <mat-error
                 *ngIf="formGroupChildren.get('area').touched && formGroupChildren.get('area').hasError('required')">
@@ -91,5 +93,4 @@
             </span>
         </button>
     </form>
-
 </div>
