@@ -72,9 +72,9 @@ public class LocationServiceImpl implements LocationService{
 	}
 	
 	@Override
-	public void deleteChild(Integer child) throws Exception {
+	public void deleteParent(Integer parent) throws Exception {
 		try {
-			childRepository.deleteById(child);
+			repository.deleteById(parent);
 		}catch (Exception e) {
 			throw new Exception(e);
 		}

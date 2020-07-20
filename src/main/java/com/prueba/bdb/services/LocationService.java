@@ -18,6 +18,6 @@ public interface LocationService {
 
 	List<LocationChildDTO> consultChild(Integer parent) throws Exception;
 
-	void deleteChild(Integer child) throws Exception;
+	void deleteParent(Integer parent) throws Exception;
 
 }

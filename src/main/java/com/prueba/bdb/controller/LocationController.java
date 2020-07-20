@@ -98,18 +98,18 @@ public class LocationController {
 		
 	}
 	
-	@DeleteMapping("/child")
-	public ResponseEntity<?> delete(@PathVariable Integer child) {
+	@DeleteMapping("/{parent}")
+	public ResponseEntity<?> delete(@PathVariable Integer parent) {
 		Map<String, Object> response = new HashMap<>();
 		try {
-			service.deleteChild(child);
+			service.deleteParent(parent);
 		}catch (Exception e) {
 			response.put("mensaje", "Error al consultar en la base de datos");
 			response.put("error", e.getMessage());
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		response.put("mensaje", "la consulta fue exitosa");
-		response.put("locacion", child);
+		response.put("mensaje", "Se elimino con exito");
+		response.put("locacion", parent);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 		
 	}
