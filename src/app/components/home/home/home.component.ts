@@ -4,6 +4,7 @@ import { LocationService } from 'src/app/core/services/location.service';
 import { Generic } from 'src/app/core/models/genericResponse';
 import { Children } from 'src/app/core/models/children';
 import { Parent } from 'src/app/core/models/parent';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   public parent: Parent;
   public children = false;
   public idChildren : number;
+  public view = false;
   constructor(
     private formBuilder: FormBuilder,
     private FormBuilderChildren: FormBuilder,
@@ -43,6 +45,13 @@ export class HomeComponent implements OnInit {
       }
     )
 
+    this.formGroupChildren = this.FormBuilderChildren.group(
+      {
+        name:["",Validators.required],
+        area: ["", Validators.required]
+      }
+    )
+
   }
 
 
@@ -56,6 +65,8 @@ export class HomeComponent implements OnInit {
 
   loadChildren(id:number){
     debugger
+    this.view = true;
+    this.children = false;
     this.locationService.loadChildren(id).subscribe(res => {
       this.locationChild = res;
       console.log("resultado", this.locationParent);
@@ -63,6 +74,7 @@ export class HomeComponent implements OnInit {
   }
 
   addChildren(id:number){
+    this.view = false;
     this.children =true;
     this.idChildren = id;
   }
@@ -70,8 +82,11 @@ export class HomeComponent implements OnInit {
   sendChildren(){
     this.setValues(this.idChildren);
     this.locationService.addCHildren(this.data).subscribe(res =>{
-      console.log("datos enviados", res)
+      console.log("datos enviados", res.mensaje)
+      swal.fire('la locacion',res.mensaje, 'success');
     })
+
+    
   }
 
   setValues(id:number){
@@ -89,7 +104,7 @@ export class HomeComponent implements OnInit {
     this.locationService.addParent(this.parent).subscribe(res =>{
       console.log("datos enviados", res)
       this.loadParent();
-
+      swal.fire('la locacion',res.mensaje, 'success');
     })
   }
 
@@ -97,6 +112,12 @@ export class HomeComponent implements OnInit {
     this.locationService.deleteParent(id).subscribe(res =>{
       console.log("Eliminado", res)
       this.loadParent();
+      swal.fire('la locacion',res.mensaje, 'success');
     })
+  }
+  
+  close(){
+    this.view = false;
+    this.children = false;   
   }
 }

@@ -41,6 +41,7 @@
             <th>Name</th>
             <th>Area</th>
             <th>Add</th>
+            <th>view</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -49,6 +50,7 @@
             <td>{{data.name}}</td>
             <td>{{data.area}}</td>
             <td class="actions" (click)="addChildren(data.id)">Add Children</td>
+            <td class="actions" (click)="loadChildren(data.id)">view</td>
             <td class="actions" (click)="delete(data.id)">Delete</td>
         </tr>
     </tbody>
@@ -93,4 +95,22 @@
             </span>
         </button>
     </form>
+</div>
+
+<div *ngIf="view">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Area</th>
+                <th><button type="button" class="btn btn-danger" (click)="close()">close</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of locationChild.locacion">
+                <td>{{data.name}}</td>
+                <td>{{data.area}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
