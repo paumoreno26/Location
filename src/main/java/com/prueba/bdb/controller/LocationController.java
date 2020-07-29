@@ -72,7 +72,7 @@ public class LocationController {
 			location = service.save(dto);
 		}catch (Exception e) {
 			response.put("mensaje", "Error al crear la locacion en la base de datos");
-			response.put("error", e.getMessage());
+			response.put("error", e.getLocalizedMessage());
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		response.put("mensaje", "La locacion ha sido creada");

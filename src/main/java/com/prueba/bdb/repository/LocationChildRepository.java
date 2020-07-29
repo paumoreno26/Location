@@ -13,4 +13,7 @@ public interface LocationChildRepository extends JpaRepository<LocationChild, In
 
 	@Query(value = "select * from location_child where parent = ?1", nativeQuery = true)
 	public List<LocationChild> findChilds(Integer parent);
+	
+	@Query(value = "select * from location_child where name = ?1", nativeQuery = true)
+	public LocationChild findName(String name);
 }
